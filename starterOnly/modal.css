@@ -527,3 +527,14 @@ footer {
   }
 }
 
+.error-text {
+  display: block;
+  margin: 0.5rem 0;
+  color: #e54858;
+  font-size: 0.8rem;
+}
+
+.error {
+  border: 2px solid #e54858;
+}
+
