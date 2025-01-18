@@ -22,6 +22,7 @@ function launchModal() {
 
 // Close modal event
 document.querySelector('.close').addEventListener('click', closeModal);
+document.querySelector('.btn-close').addEventListener('click', closeModal);
 
 // Close form modal
 function closeModal() {
@@ -77,7 +78,17 @@ const inputs = [
     message: 'Veuillez entrer un chiffre',
     condition: value => value.trim().match(/^\d+$/)
   },
-]
+];
+
+// Check if form is valid
+const checkFormValidity = () => {
+  const errors = document.querySelectorAll('.error-text');
+  if (Array.from(errors).every(error => !error.innerText)) {
+    form.reset();
+    form.style.display = 'none';
+    document.querySelector('.form-submitted').style.display = 'block';
+  }
+}
 
 // Form submit event
 form.addEventListener('submit', (e) => {
@@ -98,4 +109,6 @@ form.addEventListener('submit', (e) => {
     'termsError',
     'Vous devez vérifier que vous acceptez les termes et conditions'
   );
+
+  checkFormValidity();
 });
