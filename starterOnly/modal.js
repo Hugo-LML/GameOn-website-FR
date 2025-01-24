@@ -22,11 +22,17 @@ function launchModal() {
 
 // Close modal event
 document.querySelector('.close').addEventListener('click', closeModal);
-document.querySelector('.btn-close').addEventListener('click', closeModal);
+document.querySelector('.btn-close').addEventListener('click', resetForm);
 
 // Close form modal
 function closeModal() {
   modalbg.style.display = 'none';
+}
+
+function resetForm() {
+  modalbg.style.display = 'none';
+  form.style.display = 'block';
+  document.querySelector('.form-submitted').style.display = 'none';
 }
 
 // Form element
@@ -80,10 +86,23 @@ const inputs = [
   },
 ];
 
+// Console log form results
+const showResults = () => {
+  inputs.forEach(input => {
+    const value = form[input.name].value.trim();
+    console.log(`${input.name}: ${value}`);
+  });
+  const location = form['location'].value;
+  console.log(`location: ${location}`);
+  const terms = form['checkbox1'].checked;
+  console.log(`terms: ${terms}`);
+}
+
 // Check if form is valid
 const checkFormValidity = () => {
   const errors = document.querySelectorAll('.error-text');
   if (Array.from(errors).every(error => !error.innerText)) {
+    showResults();
     form.reset();
     form.style.display = 'none';
     document.querySelector('.form-submitted').style.display = 'block';
